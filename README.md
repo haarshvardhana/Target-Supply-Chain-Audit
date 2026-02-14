@@ -1,6 +1,6 @@
 # 📦 Target Corp: Supply Chain Variance Audit
 
-### 🚨 Executive Summary
+## 🚨 Executive Summary
 **Context:** Analyzed **100,000+ logistics records** (BigQuery) to validate delivery SLA performance against the global standard of **92%**.
 **Finding:** Identified a critical "Hidden Variance" in high-value categories, where delivery failure rates spiked to **12.7%**, nearly **1.5x the global average**.
 **Impact:** This variance represents a potential **~5% GMV risk** due to refunds and churn in high-ticket segments (Audio, Seasonal).
@@ -22,21 +22,21 @@ Based on the **12.7% hidden variance** identified in the "Audio" and "Seasonal" 
 
 ---
 
-🚛 1. Carrier Diversification & Benchmarking
+### 🚛 1. Carrier Diversification & Benchmarking
 * **The Issue:** The 'Audio' and 'Christmas/Seasonal' categories are statistically significant outliers with delivery failure rates reaching **1.5x the global average*.
 * **Recommendation:** Reallocate **20% of logistics volume** for these specific high-risk SKUs to secondary carrier partners.
 * **Goal:** Benchmark performance against the current **92% SLA standard** to isolate if the bottleneck is carrier-specific or warehouse-related.
 
 ---
 
-📦 2. Dynamic Buffer Stock Optimization
+### 📦 2. Dynamic Buffer Stock Optimization
 * **The Issue:** High-velocity SKUs currently suffer from a **15% Out-of-Stock (OOS) rate**.
 * **Recommendation:** Implement a dynamic **"Minimum Stock Threshold"** model in SQL that correlates replenishment cycles with the **12.7% delivery variance**.
 * **Goal:** Protect Gross Merchandise Value (GMV) by ensuring stock levels account for predicted delivery failures during peak demand spikes.
 
 ---
 
-🔍 3. Last-Mile "Ground Truth" Validation
+### 🔍 3. Last-Mile "Ground Truth" Validation
 * **The Issue:** Preliminary analysis suggests reporting gaps in Last-Mile delivery nodes where "false-positive" success rates were detected.
 * **Recommendation:** Deploy localized **Python validation scripts** to cross-reference carrier status logs against actual customer delivery timestamps.
 * **Goal:** Ensure dashboard metrics reflect the **actual customer experience**, reducing hidden churn in high-ticket segments.
