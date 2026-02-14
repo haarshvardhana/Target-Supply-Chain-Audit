@@ -16,6 +16,32 @@
 
 ---
 
+## 🚀 Strategic Business Recommendations
+
+Based on the **12.7% hidden variance** identified in the "Audio" and "Seasonal" categories, I propose the following data-driven interventions:
+
+---
+
+🚛 1. Carrier Diversification & Benchmarking
+* **The Issue:** The 'Audio' and 'Christmas/Seasonal' categories are statistically significant outliers with delivery failure rates reaching **1.5x the global average*.
+* **Recommendation:** Reallocate **20% of logistics volume** for these specific high-risk SKUs to secondary carrier partners.
+* **Goal:** Benchmark performance against the current **92% SLA standard** to isolate if the bottleneck is carrier-specific or warehouse-related.
+
+---
+
+📦 2. Dynamic Buffer Stock Optimization
+* **The Issue:** High-velocity SKUs currently suffer from a **15% Out-of-Stock (OOS) rate**.
+* **Recommendation:** Implement a dynamic **"Minimum Stock Threshold"** model in SQL that correlates replenishment cycles with the **12.7% delivery variance**.
+* **Goal:** Protect Gross Merchandise Value (GMV) by ensuring stock levels account for predicted delivery failures during peak demand spikes.
+
+---
+
+🔍 3. Last-Mile "Ground Truth" Validation
+* **The Issue:** Preliminary analysis suggests reporting gaps in Last-Mile delivery nodes where "false-positive" success rates were detected.
+* **Recommendation:** Deploy localized **Python validation scripts** to cross-reference carrier status logs against actual customer delivery timestamps.
+* **Goal:** Ensure dashboard metrics reflect the **actual customer experience**, reducing hidden churn in high-ticket segments.
+
+
 ## 🛠 Technical Approach
 
 **1. Data Extraction (SQL/BigQuery):**
@@ -67,30 +93,3 @@ df['estimated_days'] = (pd.to_datetime(df['estimated_date']) - pd.to_datetime(df
 variance = df[df['actual_days'] > df['estimated_days']].groupby('category').size()
 print(variance.nlargest(5))
 # Output confirmed: Audio and Seasonal categories lead variance at ~12%
-
-(Used Python (Pandas) to cross-validate the SQL-derived Date_Diff logic, ensuring 100% accuracy before final visualization)
-
-### 🚀 Strategic Business Recommendations
-
-Based on the **12.7% hidden variance** identified in the "Audio" and "Seasonal" categories, I propose the following data-driven interventions:
-
----
-
-## 🚛 1. Carrier Diversification & Benchmarking
-* **The Issue:** The 'Audio' and 'Christmas/Seasonal' categories are statistically significant outliers with delivery failure rates reaching **1.5x the global average**.
-* **Recommendation:** Reallocate **20% of logistics volume** for these specific high-risk SKUs to secondary carrier partners.
-* **Goal:** Benchmark performance against the current **92% SLA standard** to isolate if the bottleneck is carrier-specific or warehouse-related.
-
----
-
-## 📦 2. Dynamic Buffer Stock Optimization
-* **The Issue:** High-velocity SKUs currently suffer from a **15% Out-of-Stock (OOS) rate**.
-* **Recommendation:** Implement a dynamic **"Minimum Stock Threshold"** model in SQL that correlates replenishment cycles with the **12.7% delivery variance**.
-* **Goal:** Protect Gross Merchandise Value (GMV) by ensuring stock levels account for predicted delivery failures during peak demand spikes.
-
----
-
-## 🔍 3. Last-Mile "Ground Truth" Validation
-* **The Issue:** Preliminary analysis suggests reporting gaps in Last-Mile delivery nodes where "false-positive" success rates were detected.
-* **Recommendation:** Deploy localized **Python validation scripts** to cross-reference carrier status logs against actual customer delivery timestamps.
-* **Goal:** Ensure dashboard metrics reflect the **actual customer experience**, reducing hidden churn in high-ticket segments.
